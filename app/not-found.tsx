@@ -1,19 +1,18 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
-import type { Metadata } from 'next'
+import Image from "next/image";
 
-const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: '404 - Page Not Found',
-  description: 'The page you are looking for does not exist.',
-}
-
-export default function GlobalNotFound() {
+export default function NotFound() {
   return (
-    <div className={`${inter.className} flex flex-col items-center`}>
-        <h1>404 - Page Not Found</h1>
-        <p>This page does not exist.</p>
+    <div className={`flex flex-col w-full h-screen items-center justify-center`}>
+      <Image
+        src="/icons/monkey.png"
+        alt=""
+        height={186}
+        width={174}
+      />
+      <p>This page is unavailable.</p>
+      <p>Maybe you should look for something else?</p>
     </div>
   )
 }
