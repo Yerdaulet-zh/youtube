@@ -8,7 +8,7 @@ function LeftMenu() {
             <nav className={ s.nav }>
                 <Link href="/" className={s.link}>
                     <Image
-                        src="icons/home-1-svgrepo-com.svg"
+                        src="icons/home-svgrepo-com.svg"
                         alt=""
                         width={25}
                         height={25}
