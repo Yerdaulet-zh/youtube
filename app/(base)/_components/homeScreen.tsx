@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {useEffect, useState} from 'react';
 
+import s from './homeScreen.module.css';
+
 export default function HomeScreen() {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState<string[] | null>(null);
@@ -21,23 +23,42 @@ export default function HomeScreen() {
                 setIsLoading(false);
             }
         })();
-    }, [isLoading])
+    }, [])
     return (
-        <div>
+        <div className={s.content}>
             {data && data?.length > 0 ? (
                 data.map(videoId => (
+                    <div className={s.videoBlock} key={videoId}>
+                        <Link href={`/video/${videoId}`} className={s.videoPreview}>
+                            <Image
+                                src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                                alt='youtube videos'
+                                fill
+                                className={s.videoImage}
+                            />
+                        </Link>
+                        <div className={s.videoInfoContainer}>
+                            <div className={s.channelImage}>
+                                <Link href="#" className={s.hiddenText}>
+                                    Channel Image
+                                </Link>
+                            </div>
+
+                            <div className={s.videoInfo}>
+                                <Link href={`/video/${videoId}`} className={s.videoTitleLink}>
+                                    Title
+                                </Link>
+                                <Link href="#" className={s.channelNameLink}>
+                                    Channel
+                                </Link>
+                            </div>
+                        </div>
                     <Link
                         href={`/video/${videoId}`}
-                        key={videoId}
+                        className={s.link}
+                    />
+                    </div>
 
-                    >
-                        <Image
-                            src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
-                            alt='youtube videos'
-                            width={150}
-                            height={150}
-                        />
-                    </Link>
                 ))
                 ) : (
                     <div>No data</div>
