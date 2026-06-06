@@ -1,9 +1,31 @@
 .leftMenu {
     display: flex;
     flex-direction: column;
+    padding: 0 15px;
 }
 
 .nav {
     display: flex;
     flex-direction: column;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 15px;
+    border-radius: 10px;
+    width: fill;
+    font-size: 14px;
+
+    &:hover {
+        background-color: rgb(218, 225, 230);
+    }
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    margin: 6px 0;
+    background: rgba(175, 168, 168, 0.2)
 }
