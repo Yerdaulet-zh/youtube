@@ -10,7 +10,7 @@ export default function BaseLayout({
 }>) {
   return (
     <main className={s.layout}>
-      <Header />
+      <Header profileId="132"/>
       <LeftMenu />
       {children}
     </main>

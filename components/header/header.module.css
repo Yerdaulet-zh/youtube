@@ -1,8 +1,52 @@
 .header {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+
+.createYourVideo {
+    display: flex;
+    background-color: rgb(191, 232, 232);
+    padding: 5px;
+    border-radius: 18px;
+
+    &::before {
+        content: "+";
+        display: flex;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+    }
+
+    &:hover {
+        background-color: rgb(153, 196, 196);
+    }
+}
+
+.yourPorfileName {
+    width: 32px;
+    height: 32px;
+    background: gray;
+    border-radius: 50%;
+
+    &:hover {
+        background-color: rgb(192, 183, 183);
+    }
+
+    .hiddenText {
+        display: block;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+.rightPart {
+    display: flex;
+    gap: 16px;
 }
