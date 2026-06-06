@@ -14,8 +14,8 @@ function Header({profileId} : HeaderPorps ) {
                 <Image
                     src="/yt_logo_fullcolor_almostblack_digital.png"
                     alt="youtube logo"
-                    width={93}
-                    height={20}
+                    width={130}
+                    height={40}
                     priority
                 />
             </Link>
