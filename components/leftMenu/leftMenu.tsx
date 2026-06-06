@@ -10,8 +10,8 @@ function LeftMenu() {
                     <Image
                         src="icons/home-1-svgrepo-com.svg"
                         alt=""
-                        width={15}
-                        height={15}
+                        width={25}
+                        height={25}
                         unoptimized={true}
                         priority
                         className={s.icon}
@@ -22,8 +22,8 @@ function LeftMenu() {
                     <Image
                         src="icons/profile-circle-svgrepo-com.svg"
                         alt=""
-                        width={15}
-                        height={15}
+                        width={25}
+                        height={25}
                         unoptimized={true}
                         priority
                         className={s.icon}
@@ -37,8 +37,8 @@ function LeftMenu() {
                     <Image
                         src="icons/add-square-svgrepo-com.svg"
                         alt=""
-                        width={15}
-                        height={15}
+                        width={25}
+                        height={25}
                         unoptimized={true}
                         priority
                         className={s.icon}
@@ -49,8 +49,8 @@ function LeftMenu() {
                     <Image
                         src="icons/video-file-svgrepo-com.svg"
                         alt=""
-                        width={15}
-                        height={15}
+                        width={25}
+                        height={25}
                         unoptimized={true}
                         priority
                         className={s.icon}

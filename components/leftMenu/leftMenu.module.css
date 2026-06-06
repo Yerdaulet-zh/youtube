@@ -16,7 +16,7 @@
     padding-left: 15px;
     border-radius: 10px;
     width: fill;
-    font-size: 14px;
+    font-size: 24px;
 
     &:hover {
         background-color: rgb(218, 225, 230);
