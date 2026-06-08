@@ -2,36 +2,17 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import {useEffect, useState} from 'react';
 
 import s from './homeScreen.module.css';
 
-export default function HomeScreen() {
-    const [isLoading, setIsLoading] = useState(true);
-    const [data, setData] = useState<VideoDto[] | null>(null);
+type HomeScreenProps = {
+    data: VideoDto[];
+}
 
-    useEffect(() => {
-        (async() => {
-            try {
-                const dataFromServer = await fetch('/api/videos', {
-                    method: 'GET'
-                });
-                const response = await dataFromServer.json();
-                setData(response.data);
-            }
-            finally {
-                setIsLoading(false);
-            }
-        })();
-    }, [])
-
-    if (isLoading) {
-        return <div>Loading ...</div>
-    };
-
+export default function HomeScreen({data} : HomeScreenProps) {
     return (
         <div className={s.content}>
-            {data && data?.length > 0 ? (
+            {data && data.length > 0 ? (
                 data.map(videoInfo => (
                     <div className={s.videoBlock} key={videoInfo.videoId}>
                         <Link href={`/video/${videoInfo.videoId}`} className={s.videoPreview}>

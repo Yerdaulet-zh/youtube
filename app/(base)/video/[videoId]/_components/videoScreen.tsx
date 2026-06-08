@@ -1,35 +1,13 @@
 'use client';
 
 import Link from "next/link";
-import {useEffect, useState} from 'react';
 import s from "./videoScreen.module.css";
 
 type VideoScreenPorps = {
-    videoId: string;
+    data: VideoDto;
 };
 
-export default function VideoScreen({ videoId }: VideoScreenPorps) {
-    const [isLoading, setIsLoading] = useState(true);
-    const [data, setData] = useState<VideoDto | null>(null);
-    useEffect(() => {
-        (async() => {
-            try {
-                const dataFromServer = await fetch(`/api/videos?videoId=${videoId}`, {
-                    method: 'GET'
-                });
-                const response = await dataFromServer.json();
-                setData(response.data);
-            }
-            finally {
-                setIsLoading(false);
-            }
-        })();
-    }, [videoId])
-
-    if (isLoading) {
-        return <div>Loading ...</div>
-    };
-
+export default function VideoScreen({ data }: VideoScreenPorps) {
     return (
         data && <div className={s.content}>
             <iframe
