@@ -8,7 +8,7 @@ import s from './homeScreen.module.css';
 
 export default function HomeScreen() {
     const [isLoading, setIsLoading] = useState(true);
-    const [data, setData] = useState<string[] | null>(null);
+    const [data, setData] = useState<VideoDto[] | null>(null);
 
     useEffect(() => {
         (async() => {
@@ -24,14 +24,19 @@ export default function HomeScreen() {
             }
         })();
     }, [])
+
+    if (isLoading) {
+        return <div>Loading ...</div>
+    };
+
     return (
         <div className={s.content}>
             {data && data?.length > 0 ? (
-                data.map(videoId => (
-                    <div className={s.videoBlock} key={videoId}>
-                        <Link href={`/video/${videoId}`} className={s.videoPreview}>
+                data.map(videoInfo => (
+                    <div className={s.videoBlock} key={videoInfo.videoId}>
+                        <Link href={`/video/${videoInfo.videoId}`} className={s.videoPreview}>
                             <Image
-                                src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                                src={`https://img.youtube.com/vi/${videoInfo.videoId}/hqdefault.jpg`}
                                 alt='youtube videos'
                                 fill
                                 className={s.videoImage}
@@ -39,29 +44,29 @@ export default function HomeScreen() {
                         </Link>
                         <div className={s.videoInfoContainer}>
                             <div className={s.channelImage}>
-                                <Link href="#" className={s.hiddenText}>
-                                    Channel Image
+                                <Link href={`/profile/${videoInfo.authorUrl}`} className={s.hiddenText}>
+                                    {videoInfo.title}
                                 </Link>
                             </div>
 
                             <div className={s.videoInfo}>
-                                <Link href={`/video/${videoId}`} className={s.videoTitleLink}>
-                                    <b>Title</b>
+                                <Link href={`/video/${videoInfo.videoId}`} className={s.videoTitleLink}>
+                                    <b>{videoInfo.title}</b>
                                 </Link>
-                                <Link href="#" className={s.channelNameLink}>
-                                    Channel
+                                <Link href={`/profile/${videoInfo.authorUrl}`} className={s.channelNameLink}>
+                                    {videoInfo.authorName}
                                 </Link>
                             </div>
                         </div>
                     <Link
-                        href={`/video/${videoId}`}
+                        href={`/video/${videoInfo.videoId}`}
                         className={s.link}
                     />
                     </div>
 
                 ))
                 ) : (
-                    <div>No data</div>
+                    <div key={'ascasc'}>No data</div>
             )}
         </div>
     );

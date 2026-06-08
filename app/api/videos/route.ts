@@ -1,19 +1,54 @@
-const VideosData = new Set<string>();
+const VideosData = new Set<string>([
+    '1D6SBcFrfSo',
+    'XH1G58QqPIM',
+    'V1PxgjIhTw0',
+    'A5PiecCRnE0',
+    'stu2Wygd-f8',
+    '665UnOGx3Pg',
+    'DTR2p7D6tjk',
+    'icOSkM48Auc',
+    'BKonNa7XPdg'
+]);
 
-export async function GET() {
-    VideosData.add("1D6SBcFrfSo")
-    VideosData.add("XH1G58QqPIM")
-    VideosData.add("V1PxgjIhTw0")
-    VideosData.add("A5PiecCRnE0")
-    VideosData.add("stu2Wygd-f8")
-    VideosData.add("665UnOGx3Pg")
-    VideosData.add("DTR2p7D6tjk")
-    VideosData.add("icOSkM48Auc")
-    VideosData.add("BKonNa7XPdg")
+export async function GET(request: Request) {
+    const urlObject = new URL(request.url);
+    const videoId = urlObject.searchParams.get('videoId');
+    if (videoId) {
+        const rawResult = await fetch(
+            `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`
+        );
+        const videoInfo = await rawResult.json();
+        const author_url = videoInfo.author_url.split('/').at(-1);
+        return Response.json({
+            ok: true,
+            data: {
+                videoId,
+                title: videoInfo.title,
+                authorName: videoInfo.author_name,
+                authorUrl: author_url
+            }
+        });
+    };
+
+    const promises: Promise<{ videoId: string; title: string; authorName: string; authorUrl: string; }>[] = [...VideosData].map(async (videoId) => {
+        const rawResult = await fetch(
+            `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`
+        );
+        const videoInfo = await rawResult.json();
+        const author_url = videoInfo.author_url.split('/').at(-1);
+        return {
+            videoId,
+            title: videoInfo.title,
+            authorName: videoInfo.author_name,
+            authorUrl: author_url
+        }
+    });
+
+    const result = await Promise.all(promises);
 
     return Response.json({
         ok: true,
-        data: Array.from(VideosData)
+        data: result
     })
 };
 
