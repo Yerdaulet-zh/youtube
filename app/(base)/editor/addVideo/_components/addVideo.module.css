@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.input {
+    width: 500px;
+    height: 40px;
+    background: transparent;
+    padding: 8px 12px;
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
+.submitButton {
+    height: 40px;
+    background: transparent;
+    padding: 8px 12px;
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
+.error {
+    display: block;
+    color: red;
+}
+
+.iframe {
+    padding-top: 10px;
+    border: 'none'
+}

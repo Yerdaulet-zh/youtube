@@ -5,6 +5,7 @@ import { parseYouTube } from "@/utils/youtubeUrlParser"
 import { useForm, SubmitHandler } from 'react-hook-form';;
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from "zod";
+import s from "./addVideo.module.css";
 
 const VideoSchema = z.object({
   url: z
@@ -49,7 +50,6 @@ export const AddVideo = () => {
                 body: JSON.stringify({ videoId })
             }
         );
-        console.log("POST response:", postResponse);
 
         const dataFromServer = await fetch("/api/videos",
             {
@@ -58,33 +58,33 @@ export const AddVideo = () => {
         );
 
         const response = await dataFromServer.json();
-        console.log(response);
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                    {...register("url")}
-                    placeholder="paste the link"
-                />
-                <button type="submit">Upload</button>
-
-                {/* // Display validation errors if any */}
-                {errors.url && <p style={{ color: 'red' }}>{errors.url.message}</p>}
+        <div className={s.container}>
+            <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+                <div>
+                    <input
+                        {...register("url")}
+                        placeholder="paste the link"
+                        className={s.input}
+                    />
+                    {errors.url && <p className={s.error}>{errors.url.message}</p>}
+                </div>
+                <button type="submit" className={s.submitButton}>Upload</button>
             </form>
 
             {videoId && (
                 <iframe
-                    width="560"
-                    height="315"
+                    width="700"
+                    height="350"
                     src={`https://www.youtube.com/embed/${videoId}`}
                     title="YouTube video player"
-                    style={{ border: 'none' }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
+                    className={s.iframe}
                 />
             )}
-        </>
+        </div>
     );
 };
