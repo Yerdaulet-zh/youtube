@@ -1,0 +1,42 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.iframe {
+    aspect-ratio: 16/9;
+    width: 80%;
+    height: 90%;
+}
+
+.videoTitle {
+    padding: 10px 0;
+    font-size: 20px;
+}
+
+.videoInfoContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.channelImage {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: gray;
+    border-radius: 50%;
+    z-index: 1;
+
+    .hiddenText {
+        display: block;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+

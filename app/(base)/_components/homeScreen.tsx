@@ -46,7 +46,7 @@ export default function HomeScreen() {
 
                             <div className={s.videoInfo}>
                                 <Link href={`/video/${videoId}`} className={s.videoTitleLink}>
-                                    Title
+                                    <b>Title</b>
                                 </Link>
                                 <Link href="#" className={s.channelNameLink}>
                                     Channel
